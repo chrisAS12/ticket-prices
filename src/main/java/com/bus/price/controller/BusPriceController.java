@@ -14,11 +14,11 @@ public class BusPriceController {
     private final IBusPriceService _busPriceService;
 
     public BusPriceController(IBusPriceService busPriceService) {
-        _busPriceService = busPriceService;
+        this._busPriceService = busPriceService;
     }
 
     @GetMapping("/getPrice")
-    public ResponseEntity<Double> getPrice(@RequestBody TicketModel ticketModel) {
+    public ResponseEntity<String> getPrice(@RequestBody TicketModel ticketModel) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(_busPriceService.getPrice(ticketModel));
     }
