@@ -1,6 +1,7 @@
 package com.bus.price.controller;
 
 import com.bus.price.models.TicketModel;
+import com.bus.price.models.TicketPricesModel;
 import com.bus.price.services.IBusPriceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,14 @@ public class BusPriceController {
     }
 
     @GetMapping("/getPrice")
-    public ResponseEntity<String> getPrice(@RequestBody TicketModel ticketModel) {
+    public ResponseEntity<TicketPricesModel> getPrice(@RequestBody TicketModel ticketModel) {
+
+        TicketPricesModel ticketPricesModel = _busPriceService.getPrice(ticketModel);
+
+        if(ticketPricesModel == null){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
         return ResponseEntity.status(HttpStatus.OK)
-                .body(_busPriceService.getPrice(ticketModel));
+                .body(ticketPricesModel);
     }
 }
