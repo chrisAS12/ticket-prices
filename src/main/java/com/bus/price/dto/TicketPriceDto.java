@@ -1,8 +1,8 @@
-package com.bus.price.models;
+package com.bus.price.dto;
 
 import java.util.ArrayList;
 
-public class TicketPricesModel {
+public class TicketPriceDto {
     public String totalPrice;
     public ArrayList<String> ticketDescriptions;
 }
